@@ -9,13 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        VStack{
+            
+            Button(action: {
+                print("Button action")
+            }) {
+                HStack {
+                    Image(systemName: "bookmark.fill")
+                    Text("Bookmark")
+                }
+            }.buttonStyle(GradientButtonStyle())
         }
-        .padding()
+    }
+}
+
+struct GradientButtonStyle: ButtonStyle{
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .foregroundColor(Color.white)
+            .padding()
+            .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
+            .cornerRadius(15.0)
+            .scaleEffect(configuration.isPressed ? 1.3 : 1.0)
     }
 }
 
